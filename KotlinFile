@@ -1,0 +1,13 @@
+
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import com.ss.baseApp.dataBase.entities.User
+
+@Dao
+abstract class UserDao : BaseDao<User>() {
+
+    @Query("SELECT  * FROM User WHERE uid=:uid")
+    abstract fun getUserByUID(uid:String):LiveData<User>
+}
