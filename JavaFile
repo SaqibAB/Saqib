@@ -1,0 +1,42 @@
+package com.ss.baseApp.viewmodels;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
+
+import com.ss.baseApp.network.model.ApiException;
+import com.ss.baseApp.dataBase.entities.User;
+import com.ss.baseApp.network.model.UserAvailable;
+import com.ss.baseApp.repositories.UserRepository;
+
+import javax.inject.Inject;
+public class UserViewModel extends ViewModel {
+    private static final String TAG = "UserViewModel";
+
+    @Inject
+    UserRepository userRepository;
+
+    @Inject
+    public UserViewModel() {
+
+    }
+
+    public LiveData<UserAvailable> checkUserAvailability(String uid) {
+        return userRepository.checkUserAvailability(uid);
+    }
+
+    public LiveData<User> createUser(User user) {
+        return userRepository.createUser(user);
+    }
+
+    public LiveData<ApiException> getExceptionLiveMessage() {
+        return userRepository.getApiException();
+    }
+
+    public void insertUser(User user) {
+        userRepository.insertUser(user);
+    }
+
+    public LiveData<User> getUserByUID() {
+        return userRepository.getUserByUID();
+    }
+}
